@@ -9,21 +9,40 @@
 #import "RandomDeckViewController.h"
 
 @interface RandomDeckViewController ()
-
+@property (weak, nonatomic) IBOutlet UILabel *flipsLabel;
+@property (nonatomic) int flipCount;
 @end
 
 @implementation RandomDeckViewController
 
-- (void)viewDidLoad
+- (void)setFlipCount:(int)flipCount
 {
-    [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    _flipCount = flipCount;
+    // *** this needs to be a new random card each click
+    // *** leverage -- UIButton - setTitle:forState
+    // *** xxx
+    self.flipsLabel.text = [NSString stringWithFormat:@"Flips: %d", self.flipCount];
+    NSLog(@"flips updated to %d", self.flipCount);
 }
 
-- (void)didReceiveMemoryWarning
+- (IBAction)flipCard:(UIButton *)sender
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    //    if (sender.isSelected)
+    //    {
+    //        sender.selected = NO;
+    //        else
+    //        {
+    //            sender.selected = YES;
+    //        }
+    //
+    //    }
+    
+    sender.selected = !sender.isSelected;
+    
+    //    self.flipCount = self.flipCount + 1;
+    
+    self.flipCount++;
 }
+
 
 @end
